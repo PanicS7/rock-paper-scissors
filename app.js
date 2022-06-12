@@ -71,7 +71,7 @@ function game() {
   let roundsPlayerWon = 0;
   let roundsComputerWon = 0;
 
-  while (gameRound <= gameRoundSettings) {
+  while ((roundsPlayerWon <= gameRoundSettings) || ((roundsComputerWon <= gameRoundSettings))) {
     // Start round
     let roundResult = playRound(
       // Take user input
@@ -90,7 +90,9 @@ function game() {
   }
 
   // Show final score
-  if (gameRound > gameRoundSettings) {
+  console.log("player won: " + roundsPlayerWon);
+  console.log("computer won: " + roundsComputerWon);
+  if ((roundsPlayerWon > gameRoundSettings) || (roundsComputerWon > gameRoundSettings)) {
     // Player won
     if (roundsPlayerWon > roundsComputerWon) {
       console.log(`%c Player won with score: ${roundsPlayerWon} vs ${roundsComputerWon}!\n Reload page to play again. `, 
