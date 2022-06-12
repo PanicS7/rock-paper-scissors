@@ -66,12 +66,13 @@ function playRound(playerSelection,computerSelection) {
 
 function game() {
   let gameRoundSettings = 5; // Change this to change round count - default is 5 round
-  let gameRound = 1;
+  let gameRound = true; // While true game is active, new round will start
+
   // Track how much round player or computer won, to choose winner at end
   let roundsPlayerWon = 0;
   let roundsComputerWon = 0;
 
-  while ((roundsPlayerWon <= gameRoundSettings) || ((roundsComputerWon <= gameRoundSettings))) {
+  while (gameRound) {
     // Start round
     let roundResult = playRound(
       // Take user input
@@ -81,18 +82,23 @@ function game() {
 
     if (roundResult === "player") {
       roundsPlayerWon++;
+      // If player won enought rounds (gameRoundSettings) then end game
+      if (roundsPlayerWon >= gameRoundSettings) {
+        gameRound = false;
+      }
     }
     if (roundResult === "computer") {
       roundsComputerWon++;
+      // If computer won enought rounds (gameRoundSettings) then end game
+      if (roundsComputerWon >= gameRoundSettings) {
+        gameRound = false;
+      }
     }
 
-    gameRound++;
   }
 
   // Show final score
-  console.log("player won: " + roundsPlayerWon);
-  console.log("computer won: " + roundsComputerWon);
-  if ((roundsPlayerWon > gameRoundSettings) || (roundsComputerWon > gameRoundSettings)) {
+  if (gameRound === false) {
     // Player won
     if (roundsPlayerWon > roundsComputerWon) {
       console.log(`%c Player won with score: ${roundsPlayerWon} vs ${roundsComputerWon}!\n Reload page to play again. `, 
@@ -103,13 +109,8 @@ function game() {
       console.log(`%c Computer won with score: ${roundsComputerWon} vs ${roundsPlayerWon}!\n Reload page to play again. `, 
       "background: red; color: white; padding: 2px 5px");
     }
-    // Draw - player and computer won same amount of rounds
     else {
-      console.log("%c It is a draw, reload page to play again! ",
-      "background: orange; color: white; padding: 2px 5px");
-      
-      console.log(`Computer score: ${roundsComputerWon}`);
-      console.log(`Player score: ${roundsPlayerWon}`);
+      console.log("Unexpected error!");
     }
   }
 }
