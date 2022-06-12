@@ -1,8 +1,8 @@
 // Rules: rock beats scissors, scissors beats paper, paper beats rock
+const moves = ["rock","paper","scissors"];
 
 // Computer turn
 function computerPlay () {
-  const moves = ["rock","paper","scissors"];
   // choose random move
   let computerMove = Math.floor(Math.random() * 3) ;
   return moves[computerMove];
@@ -11,10 +11,13 @@ function computerPlay () {
 // Round of game
 function playRound(playerSelection,computerSelection) {
   // handle user inputs like: "RoCk" to lowercase
-  playerSelection = playerSelection.toLowerCase();
+  playerSelection = playerSelection !== null ? playerSelection.toLowerCase() : playerSelection;
 
-  // handle invalid input
-  // to do
+  // Handle invalid or empty input
+  while (!moves.includes(playerSelection) || playerSelection === null) {
+    // Keep asking user to enter valid input
+    playerSelection = prompt("Please type valid option! 'paper', 'rock' or 'scissors");
+  }
   
 
   // determine round winner
@@ -68,7 +71,6 @@ function game() {
   let roundsPlayerWon = 0;
   let roundsComputerWon = 0;
 
-  // Game length is 5 round
   while (gameRound <= gameRoundSettings) {
     // Start round
     let roundResult = playRound(
@@ -89,14 +91,17 @@ function game() {
 
   // Show final score
   if (gameRound > gameRoundSettings) {
+    // Player won
     if (roundsPlayerWon > roundsComputerWon) {
       console.log(`%c Player won with score: ${roundsPlayerWon} vs ${roundsComputerWon}!\n Reload page to play again. `, 
       "background: green; color: white; padding: 2px 5px");
     }
+    // Computer won
     else if (roundsComputerWon > roundsPlayerWon) {
       console.log(`%c Computer won with score: ${roundsComputerWon} vs ${roundsPlayerWon}!\n Reload page to play again. `, 
       "background: red; color: white; padding: 2px 5px");
     }
+    // Draw - player and computer won same amount of rounds
     else {
       console.log("%c It is a draw, reload page to play again! ",
       "background: orange; color: white; padding: 2px 5px");
