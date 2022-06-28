@@ -9,17 +9,7 @@ function computerPlay () {
 }
 
 // Round of game
-function playRound(playerSelection,computerSelection) {
-  // handle user inputs like: "RoCk" to lowercase
-  playerSelection = playerSelection !== null ? playerSelection.toLowerCase() : playerSelection;
-
-  // Handle invalid or empty input
-  while (!moves.includes(playerSelection) || playerSelection === null) {
-    // Keep asking user to enter valid input
-    playerSelection = prompt("Please type valid option! 'paper', 'rock' or 'scissors");
-  }
-  
-
+function playRound(playerSelection, computerSelection) {
   // determine round winner
   // If player and computer played same - it is draw
   if (playerSelection === computerSelection) {
@@ -61,44 +51,42 @@ function playRound(playerSelection,computerSelection) {
         }
     }
   }
-  
 }
 
-function game() {
+ // Track how much round player or computer won, to choose winner at end
+ var roundsPlayerWon = 0;
+ var roundsComputerWon = 0;
+
+function game(playerSelection) {
   let gameRoundSettings = 5; // Change this to change round count - default is 5 round
-  let gameRound = true; // While true game is active, new round will start
+  // let gameRound = true; // While true game is active, new round will start
+  let gameEnded = false;
 
-  // Track how much round player or computer won, to choose winner at end
-  let roundsPlayerWon = 0;
-  let roundsComputerWon = 0;
-
-  while (gameRound) {
     // Start round
     let roundResult = playRound(
       // Take user input
-      prompt("Choose one of: 'paper', 'rock' or 'scissors'"),
+      playerSelection,
       computerPlay()
     );
 
     if (roundResult === "player") {
       roundsPlayerWon++;
-      // If player won enought rounds (gameRoundSettings) then end game
+     // If player won enought rounds (gameRoundSettings) then end game
       if (roundsPlayerWon >= gameRoundSettings) {
-        gameRound = false;
+        gameEnded = true;
       }
     }
     if (roundResult === "computer") {
       roundsComputerWon++;
       // If computer won enought rounds (gameRoundSettings) then end game
       if (roundsComputerWon >= gameRoundSettings) {
-        gameRound = false;
+        gameEnded = true;
       }
-    }
 
   }
 
   // Show final score
-  if (gameRound === false) {
+  if (gameEnded) {
     // Player won
     if (roundsPlayerWon > roundsComputerWon) {
       console.log(`%c Player won with score: ${roundsPlayerWon} vs ${roundsComputerWon}!\n Reload page to play again. `, 
@@ -115,4 +103,14 @@ function game() {
   }
 }
 
-//game();
+// Add event listener to "playable cards - weapons"
+const cards = document.getElementsByClassName("card");
+console.log(cards);
+[...cards].map(card => card.addEventListener("click", handleClick));
+
+function handleClick(event) {
+  const playerSelection = event.target.parentNode.dataset.card;
+
+  // Start game
+  game(playerSelection);
+}
