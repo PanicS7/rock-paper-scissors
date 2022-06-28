@@ -110,18 +110,32 @@ function game(playerSelection, resultElem, playerScoreElem, computerScoreElem) {
   }
 }
 
+// Select elem to append game message (who won round)
+const resultElem = document.getElementById("roundResult");
+// Score placeholders
+const playerScoreElem = document.getElementById("player");
+const computerScoreElem = document.getElementById("computer");
+
 // Add event listener to "playable cards - weapons"
 const cards = document.getElementsByClassName("card");
-[...cards].map((card) => card.addEventListener("click", handleClick));
+[...cards].map((card) => card.addEventListener("click", e => {handleClick(e, resultElem, playerScoreElem, computerScoreElem)}));
 
-function handleClick(event) {
+// Add event listener to restart button
+document.getElementById("restart").addEventListener("click", e => {restartGame(resultElem, playerScoreElem, computerScoreElem)});
+
+function handleClick(event, resultElem, playerScoreElem, computerScoreElem) {
   const playerSelection = event.target.parentNode.dataset.card;
-  // Select elem to append game message (who won round)
-  const resultElem = document.getElementById("roundResult");
-  // Score placeholders
-  const playerScoreElem = document.getElementById("player");
-  const computerScoreElem = document.getElementById("computer");
-
   // Start game
   game(playerSelection, resultElem, playerScoreElem, computerScoreElem);
+}
+
+function restartGame(resultElem, playerScoreElem, computerScoreElem) {
+  // Reset globals - game score
+  roundsPlayerWon = 0;
+  roundsComputerWon = 0;
+  
+  // Reset UI - message and visual score
+  resultElem.innerText = "";
+  playerScoreElem.innerText = "0";
+  computerScoreElem.innerText = "0";
 }
