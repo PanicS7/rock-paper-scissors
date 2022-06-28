@@ -29,16 +29,16 @@ function playRound(playerSelection, computerSelection, resultElem) {
           resultElem.innerText = `Player won: ${playerSelection} beats ${computerSelection}`;
 
           // Add flashing style when element change
-    resultElem.classList.add("played");
-    setTimeout(() => removeStyleAnimation(resultElem), 300);
+          resultElem.classList.add("played");
+          setTimeout(() => removeStyleAnimation(resultElem), 300);
           return "player";
         }
         if (computerSelection === "scissors") {
           resultElem.innerText = `Computer won: ${computerSelection} beats ${playerSelection}`;
 
           // Add flashing style when element change
-    resultElem.classList.add("played");
-    setTimeout(() => removeStyleAnimation(resultElem), 300);
+          resultElem.classList.add("played");
+          setTimeout(() => removeStyleAnimation(resultElem), 300);
           return "computer";
         }
       // If player choose rock
@@ -47,16 +47,16 @@ function playRound(playerSelection, computerSelection, resultElem) {
           resultElem.innerText = `Computer won: ${computerSelection} beats ${playerSelection}`;
 
           // Add flashing style when element change
-    resultElem.classList.add("played");
-    setTimeout(() => removeStyleAnimation(resultElem), 300);
+          resultElem.classList.add("played");
+          setTimeout(() => removeStyleAnimation(resultElem), 300);
           return "computer";
         }
         if (computerSelection === "scissors") {
           resultElem.innerText = `Player won: ${playerSelection} beats ${computerSelection}`;
 
           // Add flashing style when element change
-    resultElem.classList.add("played");
-    setTimeout(() => removeStyleAnimation(resultElem), 300);
+          resultElem.classList.add("played");
+          setTimeout(() => removeStyleAnimation(resultElem), 300);
           return "player";
         }
       // If player choose scissors
@@ -65,16 +65,16 @@ function playRound(playerSelection, computerSelection, resultElem) {
           resultElem.innerText = `Player won: ${playerSelection} beats ${computerSelection}`;
 
           // Add flashing style when element change
-    resultElem.classList.add("played");
-    setTimeout(() => removeStyleAnimation(resultElem), 300);
+          resultElem.classList.add("played");
+          setTimeout(() => removeStyleAnimation(resultElem), 300);
           return "player";
         }
         if (computerSelection === "rock") {
           resultElem.innerText = `Computer won: ${computerSelection} beats ${playerSelection}`;
 
           // Add flashing style when element change
-    resultElem.classList.add("played");
-    setTimeout(() => removeStyleAnimation(resultElem), 300);
+          resultElem.classList.add("played");
+          setTimeout(() => removeStyleAnimation(resultElem), 300);
           return "computer";
         }
     }
@@ -137,7 +137,7 @@ function handleClick(event, resultElem, playerScoreElem, computerScoreElem) {
   // Add flashing style
   event.target.classList.add("played");
   setTimeout(() => removeStyleAnimation(event.target), 300);
-  
+
   // Start game
   game(playerSelection, resultElem, playerScoreElem, computerScoreElem);
 }
