@@ -10,24 +10,25 @@
   <title>ROCK PAPER SCISSORS</title>
 </head>
 <body>
-  <h1>Choose your weapon</h1>
   <div class="container">
-    <div class="card" data-card="rock">
-      <i class="fa-solid fa-hand-back-fist"></i>
+    <h1>Choose your weapon</h1>
+    <div class="card-container">
+      <div class="card" data-card="rock">
+        <i class="fa-solid fa-hand-back-fist"></i>
+      </div>
+      <div class="card" data-card="paper">
+        <i class="fa-solid fa-hand"></i>
+      </div>
+      <div class="card" data-card="scissors">
+        <i class="fa-solid fa-hand-scissors"></i>
+      </div>
     </div>
-    <div class="card" data-card="paper">
-      <i class="fa-solid fa-hand"></i>
+    <div class="result">
+      <p id="roundResult"></p>
+      <div>Player: <span id="player">0</span></div>
+      <div>Computer: <span id="computer">0</span></div>
+      <button id="restart">Restart game</button>
     </div>
-    <div class="card" data-card="scissors">
-      <i class="fa-solid fa-hand-scissors"></i>
-    </div>
-  </div>
-  <div class="result">
-    <p id="roundResult"></p>
-    <div>Player: <span id="player">0</span></div>
-    <div>Computer: <span id="computer">0</span></div>
-
-    <button id="restart">Restart game</button>
   </div>
 
   <script src="./app.js"></script>

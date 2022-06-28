@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  opacity: 1;
 }
 body {
   width: 100vw;
@@ -10,7 +11,7 @@ body {
   align-items: center;
   flex-direction: column;
 }
-.container {
+.card-container {
   width: 300px;
   height: 300px;
   margin: 0 auto;
@@ -24,4 +25,22 @@ body {
 }
 .card i {
   font-size: 80px;
+}
+.result>#roundResult {
+  margin: 1em 0;
+
+  /* Visibility fix */
+  font-size: 16px;
+  height: 16px;
+}
+.result>#restart {
+  margin-top: 3em;
+  padding: 0.5em 1em;
+  border: 0;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+}
+.played {
+  opacity: 0.5;
 }
