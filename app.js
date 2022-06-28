@@ -64,10 +64,6 @@ var roundsPlayerWon = 0;
 var roundsComputerWon = 0;
 
 function game(playerSelection, resultElem, playerScoreElem, computerScoreElem) {
-  let gameRoundSettings = 5; // Change this to change round count - default is 5 round
-  // let gameRound = true; // While true game is active, new round will start
-  let gameEnded = false;
-
   // Start round
   let roundResult = playRound(
     // Take user input
@@ -79,34 +75,10 @@ function game(playerSelection, resultElem, playerScoreElem, computerScoreElem) {
   if (roundResult === "player") {
     roundsPlayerWon++;
     playerScoreElem.innerText = roundsPlayerWon;
-    // If player won enought rounds (gameRoundSettings) then end game
-    if (roundsPlayerWon >= gameRoundSettings) {
-      gameEnded = true;
-    }
   }
   if (roundResult === "computer") {
     roundsComputerWon++;
     computerScoreElem.innerText = roundsComputerWon;
-    // If computer won enought rounds (gameRoundSettings) then end game
-    if (roundsComputerWon >= gameRoundSettings) {
-      gameEnded = true;
-    }
-  }
-
-  // Show final score
-  if (gameEnded) {
-    // Player won
-    if (roundsPlayerWon > roundsComputerWon) {
-      resultElem.innerText = 
-        `Player won with score: ${roundsPlayerWon} vs ${roundsComputerWon}!\n Reload page to play again.`;
-    }
-    // Computer won
-    else if (roundsComputerWon > roundsPlayerWon) {
-      resultElem.innerText =
-        `Computer won with score: ${roundsComputerWon} vs ${roundsPlayerWon}!\n Reload page to play again.`;
-    } else {
-      console.log("Unexpected error!");
-    }
   }
 }
 
